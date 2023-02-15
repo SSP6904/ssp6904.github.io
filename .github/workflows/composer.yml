@@ -1,0 +1,9 @@
+jobs:
+  build:
+
+    ...
+
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+      with:
+        command: composer require craftcms/redactor -w && php craft plugin/install redactor
