@@ -1,0 +1,14 @@
+parameters:
+    level: 6
+
+    checkGenericClassInNonGenericObjectType: false
+
+    paths:
+        - ecs.php
+        - scripts
+        - sets
+        - src
+        - tests
+
+    bootstrapFiles:
+        - vendor/rector/rector/vendor/scoper-autoload.php
