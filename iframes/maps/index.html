@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple map</title>
+    <style>#map { height: 550px; }</style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([43.67, -96.99], 4);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        var popup = L.popup();
+        var strike2 = L.marker([38.80547, -76.992188]).addTo(map);
+        var strike3 = L.marker([42.333169, -83.047028]).addTo(map);
+        var strike4 = L.marker([41.866493, -87.628326]).addTo(map);
+        var strike5 = L.marker([36.137875, -115.136719]).addTo(map);
+        var strike6 = L.marker([34.034453, -118.240356]).addTo(map);
+        var strike7 = L.marker([40.75558, -111.873779]).addTo(map);
+        var strike8 = L.marker([39.732538, -104.985352]).addTo(map);
+        var strike9 = L.marker([40.688969, -74.003906]).addTo(map);
+        var strike10 = L.marker([33.449777, -112.104492]).addTo(map);
+        var strike11 = L.marker([29.735762, -95.383301]).addTo(map);
+        var strike12 = L.marker([42.309815, -71.037598]).addTo(map);
+    </script>
+    <!-- <script>
+        var popup = L.popup();
+
+        function onMapClick(e) {
+        popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+    </script> -->
+    <script>
+        strike2.bindPopup("Washington, DC").openPopup();
+        strike3.bindPopup("Detroit, MI").openPopup();
+        strike4.bindPopup("Chicago, IL").openPopup();
+        strike5.bindPopup("Las Vegas, NV").openPopup();
+        strike6.bindPopup("Los Angeles, CA").openPopup();
+        strike7.bindPopup("Salt Lake City, UT").openPopup();
+        strike8.bindPopup("Denver, CO").openPopup();
+        strike9.bindPopup("New York, NY").openPopup();
+        strike10.bindPopup("Phoenix, AZ").openPopup();
+        strike11.bindPopup("Houston, TX").openPopup();
+        strike12.bindPopup("Boston, MA").openPopup();
+    </script>
+</body>
+</html>

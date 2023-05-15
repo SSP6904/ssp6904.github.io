@@ -11,7 +11,7 @@ a:hover,
 a:focus,
 a:active {
   text-decoration: none;
-  /*color: #555;*/
+  color: #f71c1c;
 }
 
 .clear {
