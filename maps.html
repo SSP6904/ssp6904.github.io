@@ -4,6 +4,9 @@
 <head>
     <title>Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>#map { height: 471px;}</style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -12,7 +15,8 @@
         <p>This is just a simple map of major citys!</p>
         <p>It's made in leaflet and Openstreatmap!</p>
         <br>
-        <iframe src="/iframes/maps/index.html" width="900px" height="570px"></iframe>
+        <div id="map"></div>
+        <script src="/js/map-main.js"></script>
         <div></div>
         <br>
         <a href="/">Root folder</a>
