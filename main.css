@@ -1,0 +1,175 @@
+body {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    --profile-gradient-primary-color: hsla(120, 100%, 33.3%, 1);
+    --profile-gradient-secondary-color: hsla(328, 100%, 70.6%, 1);
+    --profile-gradient-button-color: hsla(120, 100%, 21.6%, 1);
+    --profile-gradient-overlay-color: hsla(0,0%,0%,0.6);
+    --profile-body-background-color: hsla(0,0%,0%,0.45);
+    --profile-body-background-hover: hsla(0,0%,100%,0.16);
+    --profile-body-divider-color: hsla(0, 0%, 100%, 0.24);
+    --profile-avatar-border-color: hsla(120, 100%, 13.3%, 1);
+    --profile-message-input-border-color: hsla(325, 31.2%, 51.6%, 1);
+    --profile-note-background-color: hsla(0,0%,0%,0.3);
+    --profile-role-pill-background-color: hsla(228,6.67%,14.71%,0.5);
+    --profile-role-pill-border-color: hsla(0,0%,100%,0.2);
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(var(--profile-gradient-primary-color), var(--profile-gradient-secondary-color));
+    padding: 0.5em;
+}
+
+code {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    border:1px solid #ccc;
+    border-radius: 10px;
+    padding:5px 10px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background: #202020;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    margin: auto;
+    border-radius: 11pt;
+    z-index: 1;
+}
+
+.banner {
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.2;
+    z-index: 0;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 50%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5));
+    border-radius: 0.5em;
+}
+
+.banner img {
+    -webkit-transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+* {
+    transition: all 0.5s ease;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: red;
+}
+
+a:visited {
+    color: white
+}
+
+.top {
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.links img {
+    width: 8em;
+    border-radius: 50%;
+}
+
+a {
+    text-decoration: none;
+    color: #ccc;
+    transition: color 0.5s ease-in-out;
+}
+
+.footer {
+    margin-top: 2em;
+    font-size: 60%;
+}
+
+.user {
+    width: 128px;
+    border-radius: 50%;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 22px;
+    margin-top: 1.5em;
+}
+
+.msgBox {
+	padding: 0.5rem;
+	border-radius: 5px;
+	-moz-box-align: center;
+	align-items: center;
+	line-height: 1.25rem;
+	display: flex;
+	width: 100%;
+	font-size: 0.875rem;
+}
+
+.msgBox {
+	margin-bottom: 0;
+}
+
+.msgBox .title {
+	display: flex;
+	border-radius: 9999px;
+	text-transform: uppercase;
+	padding: 0.25rem 0.5rem;
+	font-size: 0.75rem;
+	line-height: 1;
+	font-weight: 700;
+	margin-right: 0.75rem;
+}
+
+.msgBox .content {
+	margin-right: 0.5rem;
+	text-align: left;
+	flex: 1 1 auto;
+}
+
+
+.msgBox.error {
+	color: rgba(255,255,255, 1);
+	background-color: rgba(220,38,38, 1);
+	border-color: rgba(153,27,27, 1);
+}
+.msgBox.error .title { background-color: rgba(239,68,68, 1); }
+
+.msgBox.info {
+	color: rgba(255, 255, 255, 1);
+	background-color: rgba(59, 113, 202, 1);
+	border-color: rgba(48, 102, 153, 1);
+}
+.msgBox.info .title { background-color: rgba(84, 180, 211, 1); }

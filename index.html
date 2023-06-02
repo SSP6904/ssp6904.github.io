@@ -1,49 +1,54 @@
 <!DOCTYPE html>
-<html>
 
+<html lang="en_US">
 <head>
-    <title>Hi there!</title>
+    <title>Shuan</title>
+    <link rel="stylesheet" href="/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
-<div id="main">
-    <div class="container">
-        <h1>Hi there!</h1>
-        <p>I hope you are doing well.</p>
-        <p>Thanks for coming to my personal website!</p>
-        <p>-shaun</p>
-        <br>
+    <div id="noJS" role="alert" class="msgBox error">
+        <span class="title">Whoops!</span>
+        <span class="content">You're missing out; enable JavaScript!</span>
     </div>
-    <br>
-    <div class="container">
-        <h1>Introduction</h1>
-        <p>My name is Shaun, and I'm a self-taught developer!</p>
-        <p>I live in the state of Michigan in the United States as well!</p>
-        <p>My personality is about making videos, playing computer games, a program developer, Middle School student,and many more!</p>
-        <p>I am currently 14 years old, and is a ADHD kid.</p>
+    <div id="loading" style="opacity:0;" role="alert" class="msgBox info">
+        <span class="title">Info</span>
+        <span class="content">Still loading...</span>
     </div>
-    <br>
     <div class="container">
-        <h1>Gallery</h1>
-        <img src="/img/picture1.jpg" style="width: 234px;" title="Me in IRL">
-        <img src="/img/picture2.jpg" style="width: 234px;" title="Current profile picture">
+        <div class="banner">
+            <img src="./images/banner.jpg">
+        </div>
+        <div class="top">
+            <div>
+                <p id="timeNow">NOW LOADING...</p>
+            </div>
+            <div>
+                <p id="version">Unknown</p>
+            </div>
+        </div>
+        <img src="/images/Wolf.gif" class="user">
+        <h2 id="hi">Hi there!</h1>
+        <p>My name is Shaun</p>
+        <p>I'm a proud CEO and founder of TTNRT!</p>
+        <p>This is my personal website on GitHub Pages!</p>
+        <p>You look at my other sites I have.</p>
+        <div class="links">
+            <div>
+                <a href="//www.ttnrtsite.me">
+                    <img src="/images/TTNRT.png" style="width: 64px;">
+                </a>
+                <h3>TTNRT</h3>
+                <p>CEO</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; TTNRT CORP</p>
+        </div>
     </div>
-    <br>
-    <div class="container">
-        <H1>Random</H1>
-        <p>Just a few links that you might like.</p>
-        <br>
-        <!-- <address>The links are not ready just yet!</address>
-        <address>Please wait until the next commit is pushed!</address> -->
-        <a href="/maps.html">Interactive Map</a>
-        <div></div>
-        <a href="/v86">v86 Emulator</a>
-        <div></div>
-        <a href="/weatherstream">WeatherRadio</a>
-    </div>
-</div>
+<script type="text/javascript">
+var noJSElement = document.getElementById("noJS");noJSElement.style.display = "none";var stillLoadingElement = document.getElementById("loading");stillLoadingElement.style.opacity = "1";
+</script>
+<script src="loading.js" type="text/javascript"></script>    
 </body>
-
 </html>
