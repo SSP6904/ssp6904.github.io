@@ -12,7 +12,7 @@ body {
 
 .container {
     background-color: #3609a8;
-    border-style: solid white 2px;
+    border-style: solid white 4px;
     color: #B3B8CD;
     position: relative;
     width: 350px;
@@ -75,26 +75,32 @@ p {
 
 p.button {
     background-color: indigo;
-    border-style: solid white 2px;
+    border-style: solid white 4px;
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
 }
 
 p.button:hover {
     background-color: rgb(126, 9, 210);
-    border-style: solid white 2px;
+    border-style: solid white 4px;
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
 }
 
 p.button:focus {
     background-color: rgb(86, 33, 123);
-    border-style: solid white 2px;
+    border-style: solid white 4px;
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .locat {
