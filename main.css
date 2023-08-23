@@ -11,9 +11,8 @@ body {
 }
 
 .container {
-    background-color: #231E39;
-    border-radius: 25px;
-    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.40);
+    background-color: #3609a8;
+    border-style: solid white 2px;
     color: #B3B8CD;
     position: relative;
     width: 350px;
@@ -73,3 +72,37 @@ p {
     font-size: 14px;
     line-height: 21px;
   }
+
+p.button {
+    background-color: indigo;
+    border-style: solid white 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+p.button:hover {
+    background-color: rgb(126, 9, 210);
+    border-style: solid white 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+p.button:focus {
+    background-color: rgb(86, 33, 123);
+    border-style: solid white 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.locat {
+    color: #FFFFFF;
+    background-color: #040292;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 7px;
+    text-align: center;
+}
