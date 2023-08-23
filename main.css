@@ -11,9 +11,9 @@ body {
 }
 
 .container {
-    background-color: #3609a8;
-    border: 3px solid white;
-    color: #B3B8CD;
+    background-color: #352688;
+    border: 1px solid white;
+    color: white;
     position: relative;
     width: 350px;
     max-width: 100%;
@@ -23,11 +23,14 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
 }
 
 .container img {
+    margin-top: 5px;
     border-radius: 50%;
     padding: 7px;
+    border: 1px solid white;
     height: 100px;
     width: 100px;
 }
@@ -54,59 +57,50 @@ canvas {
     text-align: center;
 }
 
-.about {
-    margin-bottom: 0px;
-}
-
-
-h2 {
-    margin: 10px 0;
-}
-  
-h6 {
-    margin: 5px 0;
-    text-transform: uppercase;
-}
-
 p {
-    font-size: 14px;
     line-height: 21px;
-  }
+}
+
+div.intro {
+    font-size: 15px;
+}  
 
 a.button {
     background-color: indigo;
-    border: 3px solid white;
+    border: 1px solid white;
     color: white;
     border-radius: 5px;
-    padding: 12px 25px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 8px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 a.button:hover {
     background-color: rgb(126, 9, 210);
-    border: 3px solid white;
+    border: 1px solid white;
     color: white;
     border-radius: 5px;
-    padding: 12px 25px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 8px;
+    font-size: 15px;
 }
 
 a.button:focus {
     background-color: rgb(86, 33, 123);
-    border: 3px solid white;
+    border: 1px solid white;
     color: white;
     border-radius: 5px;
-    padding: 12px 25px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .locat {
@@ -117,4 +111,25 @@ a.button:focus {
     font-weight: bold;
     padding: 3px 7px;
     text-align: center;
+}
+
+hr {
+    color: white;
+    width: 100%;
+}
+
+.fa-youtube {
+    color: red;
+}
+
+.fa-reddit {
+    color: orangered;
+}
+
+.fa-instagram {
+    color: rgb(252, 4, 252);
+}
+
+.fa-discord {
+    color: rgb(56, 56, 255);
 }
