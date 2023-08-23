@@ -12,7 +12,7 @@ body {
 
 .container {
     background-color: #3609a8;
-    border-style: solid white 4px;
+    border: 3px solid white;
     color: #B3B8CD;
     position: relative;
     width: 350px;
@@ -75,10 +75,10 @@ p {
 
 p.button {
     background-color: indigo;
-    border-style: solid 4px white;
+    border: 3px solid white;
     color: white;
     border-radius: 5px;
-    padding: 15px 32px;
+    padding: 12px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -87,10 +87,10 @@ p.button {
 
 p.button:hover {
     background-color: rgb(126, 9, 210);
-    border-style: solid 4px white;
+    border: 3px solid white;
     color: white;
     border-radius: 5px;
-    padding: 15px 32px;
+    padding: 12px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -99,14 +99,14 @@ p.button:hover {
 
 p.button:focus {
     background-color: rgb(86, 33, 123);
-    border-style: solid 4px white;
+    border: 3px solid white;
     color: white;
     border-radius: 5px;
-    padding: 15px 32px;
+    padding: 12px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 8px;
+    font-size: 14px;
 }
 
 .locat {
