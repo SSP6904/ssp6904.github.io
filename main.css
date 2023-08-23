@@ -73,7 +73,7 @@ p {
     line-height: 21px;
   }
 
-p.button {
+a.button {
     background-color: indigo;
     border: 3px solid white;
     color: white;
@@ -85,7 +85,7 @@ p.button {
     font-size: 8px;
 }
 
-p.button:hover {
+a.button:hover {
     background-color: rgb(126, 9, 210);
     border: 3px solid white;
     color: white;
@@ -97,7 +97,7 @@ p.button:hover {
     font-size: 8px;
 }
 
-p.button:focus {
+a.button:focus {
     background-color: rgb(86, 33, 123);
     border: 3px solid white;
     color: white;
