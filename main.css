@@ -89,6 +89,7 @@ a.button:hover {
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
+    transition: all 0.5s ease;
 }
 
 a.button:focus {
@@ -99,6 +100,7 @@ a.button:focus {
     padding: 10px;
     text-align: center;
     text-decoration: none;
+    transition: all 0.5s ease;
     display: inline-block;
     font-size: 15px;
 }
