@@ -1,7 +1,7 @@
 baseURL: /
 languageCode: en-us
 title: Shauns blog
-theme: PaperMod
+theme: basictheme
 
 params:
     homeInfoParams:
