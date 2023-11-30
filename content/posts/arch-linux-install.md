@@ -1,7 +1,7 @@
 ---
 title: 'Arch Linux install'
-date: 2023-11-27T14:06:55Z
-draft: true
+date: 2023-11-30T14:06:55Z
+draft: false
 ---
 
 In this post, I will show you how to install Arch Linux on a machine! Installing it is very different from what we are used to installing linux today. We are going use a virtual machine for this tutorial.
@@ -26,11 +26,11 @@ Lets get started!
 
 To start off, you need to download the ISO image. On their website, they have mirror sepific to your location. For me, I use the United States mirrors. 
 
-![image1](/posts/images/archlinux_step2.png)
+![image1](/posts/images/archlinux_109.png)
 
 Select a mirror. After that, you can download the ISO file.
 
-![image2](/posts/images/archlinux_step1.png)
+![image2](/posts/images/archlinux_110.png)
 
 The ISO file is aabout 800MB, so it may take some time to download. For me, it took about 5 minutes on AT&T internet. In the meantime, you can download one of the tools that are used for flashing the ISO image
 
@@ -52,10 +52,231 @@ If you are going to use ethernet, you can skip this step.
 
 Turn on your computer, and plug in the USB drive. My computer is a Dell model, so I will use the F12 key. Select your USB drive, and press enter to boot it. Once you are in, you may see this screen.
 
-![image3](/posts/images/archlinux_step4.png)
+![image3](/posts/images/archlinux_111.png)
 
 Press enter on the first option to boot into the USB. Give it some time to copy files to a RAMDisk. Once it is done, you start off with a terminal screen.
 
+![image3](/posts/images/archlinux_112.png)
+
 ## Step 5
 
-Connect the Ethernet cable to your computer. 
+Connect the Ethernet cable to your computer. You should get internet from DHCP from your router. If you use a different configuration, look up on how to do that. This tutorial will use DHCP.
+
+If you are able to get internet, you should do a ping test to be sure you can get packages. Using the command below will ping Google.
+
+```bash
+$ ping -c2 www.google.com
+```
+
+![image3](/posts/images/archlinux_113.png)
+
+## Step 6
+
+It's time to partition the disk. To start off, we're going to list the disk we will use. For me, I have a 32GB Disk in my virtual machine, and it's device name is `vda`. So I will use that. You can list disks using one of these commands
+
+```bash
+$ cat /proc/partitions
+$ ls /dev/[s|x|v]d*
+$ lsblk
+$ fdisk –l 
+```
+
+![image3](/posts/images/archlinux_114.png)
+
+Let's go over the disk layout. Here's is what we need:
+
+|Name      |Size|Format |
+|----------|----|-------|
+|EFI System|300M|FAT32  |
+|Swap      |RAM |Swap ON|
+|Root      |HDD |ext4   |
+
+Now we can start partitioning the disk. Run the "cfdisk" utilty to do that.
+
+```bash
+$ cfdisk /dev/sdX
+```
+
+Replace X with your drive name.
+
+![image3](/posts/images/archlinux_115.png)
+
+Select the GPT label on this screen. Once done, you should see something like this.
+
+![image3](/posts/images/archlinux_116.png)
+
+Do the following here:
+
+New --> `300M` --> Type --> EFI System
+
+New --> `RAM SIZE` --> Type --> Linux Swap
+
+New --> `HDD Size`
+
+You should have the layout like this:
+
+![image3](/posts/images/archlinux_117.png)
+
+You can now write your changes to the disk. To do so, follow this step.
+
+Write --> Type `yes` --> Quit
+
+When done, quit the app. To be sure you have everything correct, type this command.
+
+```bash
+$ lsblk
+```
+
+![image3](/posts/images/archlinux_118.png)
+
+It's time to format the partitions! Type these commands in. Remember to chnage sdX with your device name.
+
+```bash
+$ mkfs.fat -F32 /dev/sdX1
+$ mkfs.ext4 /dev/sdX3
+$ mkswap /dev/sdX2
+```
+
+![image3](/posts/images/archlinux_119.png)
+
+## Step 7
+
+It's time to install Arch Linux. Let's start off by mounting the root and swap partitons. Type these commands to do so.
+
+```bash
+$ mount /dev/sdX3 /mnt
+$ ls /mnt 
+$ swapon /dev/sdX2
+```
+![image3](/posts/images/archlinux_120.png)
+
+Let's begin. To install, we need to use the `pacstrap` command. This is so we can get the linux base commponets. Use the command to do so.
+
+```bash
+$ pacstrap /mnt base base-devel linux linux-firmware nano vim dhcpcd
+```
+
+![image3](/posts/images/archlinux_121.png)
+
+Depending on your internet speed, it take about an hour to finish up. Once done, create the fstab file. To do this, type this command.
+
+```bash
+$ genfstab -U -p /mnt >> /mnt/etc/fstab
+```
+
+To check it, type this command
+
+```bash
+cat /mnt/etc/fstab
+```
+
+## Step 8
+
+Let's configure the system. First off, we need to chroot into the root partition.
+
+```bash
+$ arch-chroot /mnt
+```
+
+We should also add a hostname.
+
+```bash
+$ echo "archlinux" > /etc/hostname
+```
+
+Now we need to add the locale for our keyboard. Type this command. Be sure to have `nano` installed.
+
+```bash
+$ nano /etc/locale.gen
+```
+
+For me, I use en_US, so I will select that. If you know which one, uncomment that line and save the file.
+
+![image](/posts/images/archlinux_122.png)
+
+After that, type these commands:
+
+```bash
+$ locale-gen
+$ echo LANG=en_US.UTF-8 > /etc/locale.conf
+$ export LANG=en_US.UTF-8
+```
+
+![image](/posts/images/archlinux_123.png)
+
+You should also set your timezone.
+
+```bash
+$ ls /usr/share/zoneinfo/
+$ ln -s /usr/share/zoneinfo/Continent/Main_city /etc/localtime
+```
+
+![image](/posts/images/archlinux_124.png)
+
+Make sure that your system is up to date as well.
+
+```bash
+$ pacman -Syu
+```
+
+Now set a password for the root account, and create one for you.
+
+```bash
+$ passwd
+```
+
+```bash
+$ useradd -mg users -G wheel,storage,power -s /bin/bash your_new_user
+$ passwd your_new_user
+```
+
+Lets set up sudo. To do this, type this command.
+
+```bash
+$ nano /etc/sudoers
+```
+
+![image](/posts/images/archlinux_125.png)
+
+Our last step is to install the grub bootloader. Install these packages first.
+
+```bash
+$ pacman -S grub efibootmgr dosfstools os-prober mtools
+```
+
+Then you need to mount the boot partition and create a EFI folder inside it. Once that is done, you can install the grub bootloader
+
+```bash
+$ mkdir /boot/EFI
+$ mount /dev/sdX1 /boot/EFI
+$ grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck
+```
+
+After that, you can create the configuration file.
+
+```bash
+$ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+![image](/posts/images/archlinux_126.png)
+
+Finally, enable the DHCP server service on boot.
+
+```bash
+$ systemctl enable dhcpcd
+```
+
+## Final
+
+Congrats! You have Arch Linux installed on your computer! To restart, exit out of the chroot enviroment, and then reboot
+
+```bash
+$ exit
+$ reboot
+```
+
+![image](/posts/images/archlinux_127.png)
+
+## Conclusion
+
+In general, installing is very different from what we are used to seeing today. However, the OS is very lightweight, and easy to use. You can treat as a linux OS, any way you like.
