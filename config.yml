@@ -23,4 +23,6 @@ params:
         url: "https://www.reddit.com/user/Agile_Professional83"
       - name: "discord"
         url: "https://discord.com/invite/XdgMxu8EZJ"
+      - name: "mastodon"
+        url: "https://soical.ttnrtsite.me/@shoffer"
 
