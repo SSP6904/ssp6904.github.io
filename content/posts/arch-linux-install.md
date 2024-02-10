@@ -21,7 +21,7 @@ dd - [https://www.cyberciti.biz/faq/creating-a-bootable-ubuntu-usb-stick-on-a-de
 Lets get started!
 
 ## Step 1
-To start off, you need to download the ISO image. On their website, they have mirror sepific to your location. For me, I use the United States mirrors. 
+To start off, you need to download the ISO image. On their website, they have mirror specific to your location. For me, I use the United States mirrors. 
 
 ![image1](/posts/images/archlinux_109.png)
 
@@ -29,15 +29,15 @@ Select a mirror. After that, you can download the ISO file.
 
 ![image2](/posts/images/archlinux_110.png)
 
-The ISO file is aabout 800MB, so it may take some time to download. For me, it took about 5 minutes on AT&T internet. In the meantime, you can download one of the tools that are used for flashing the ISO image
+The ISO file is about 800MB, so it may take some time to download. For me, it took about 5 minutes on AT&T internet. In the meantime, you can download one of the tools that are used for flashing the ISO image
 
 ## Step 2
-There are a lot of ways you can make a bootable ISO image. For most users, it is best to use Rufus, as it's more easyier to use, plus it has some features that most tools don't have. Keep in mind that this tool is only for Windows. The other tools I have listed in this post will depend on what OS you are using.
+There are a lot of ways you can make a bootable ISO image. For most users, it is best to use Rufus, as it's more easier to use, plus it has some features that most tools don't have. Keep in mind that this tool is only for Windows. The other tools I have listed in this post will depend on what OS you are using.
 
-> IMPORTENT: If you are using Rufus, you need to spesify on using BIOS or UEFI. Please note the devices firmware. I recommand UEFI, as it provides better boot times, and in general, more faster than BIOS, which is MBR.
+> IMPORTENT: If you are using Rufus, you need to specify on using BIOS or UEFI. Please note the devices firmware. I recommend UEFI, as it provides better boot times, and in general, more faster than BIOS, which is MBR.
 
 ## Step 3
-Once you have flashed the image to a USB drive, you can now install Arch Linux. I'm going to be using a virtual machine, as it is the same thing to most other computers compatabile with the OS. If you are installing it to a computer, you may need to look up on what key you use to get into the boot menu.
+Once you have flashed the image to a USB drive, you can now install Arch Linux. I'm going to be using a virtual machine, as it is the same thing to most other computers compatible with the OS. If you are installing it to a computer, you may need to look up on what key you use to get into the boot menu.
 
 Also, for most users, you can use Wi-Fi or Ethernet, as these connections can very on your device. If you want, you can use this link on the Wi-Fi setup: [https://wiki.archlinux.org/title/Network_configuration/Wireless](https://wiki.archlinux.org/title/Network_configuration/Wireless)
 
@@ -48,12 +48,12 @@ Turn on your computer, and plug in the USB drive. My computer is a Dell model, s
 
 ![image3](/posts/images/archlinux_111.png)
 
-Press enter on the first option to boot into the USB. Give it some time to copy files to a RAMDisk. Once it is done, you start off with a terminal screen.
+Press enter on the first option to boot into the USB. Give it some time to copy files to a RAM Disk. Once it is done, you start off with a terminal screen.
 
 ![image3](/posts/images/archlinux_112.png)
 
 ## Step 5
-Connect the Ethernet cable to your computer. You should get internet from DHCP from your router. If you use a different configuration, look up on how to do that. This tutorial will use DHCP. If you want to use a static ip, open this link to the archlinux wiki and follow the guide on how to do that. [https://wiki.archlinux.org/title/dhcpcd#Static_profile](https://wiki.archlinux.org/title/dhcpcd#Static_profile)
+Connect the Ethernet cable to your computer. You should get internet from DHCP from your router. If you use a different configuration, look up on how to do that. This tutorial will use DHCP. If you want to use a static ip, open this link to the Arch Linux wiki and follow the guide on how to do that. [https://wiki.archlinux.org/title/dhcpcd#Static_profile](https://wiki.archlinux.org/title/dhcpcd#Static_profile)
 
 If you are able to get internet, you should do a ping test to be sure you can get packages. Using the command below will ping Google.
 
@@ -83,7 +83,7 @@ Let's go over the disk layout. Here's is what we need:
 |Swap      |RAM |Swap ON|
 |Root      |HDD |ext4   |
 
-Now we can start partitioning the disk. Run the "cfdisk" utilty to do that.
+Now we can start partitioning the disk. Run the "cfdisk" utility to do that.
 
 ```bash
 $ cfdisk /dev/sdX
@@ -121,7 +121,7 @@ $ lsblk
 
 ![image3](/posts/images/archlinux_118.png)
 
-It's time to format the partitions! Type these commands in. Remember to chnage sdX with your device name.
+It's time to format the partitions! Type these commands in. Remember to change sdX with your device name.
 
 ```bash
 $ mkfs.fat -F32 /dev/sdX1
@@ -133,7 +133,7 @@ $ mkswap /dev/sdX2
 
 ## Step 7
 
-It's time to install Arch Linux. Let's start off by mounting the root and swap partitons. Type these commands to do so.
+It's time to install Arch Linux. Let's start off by mounting the root and swap partitions. Type these commands to do so.
 
 ```bash
 $ mount /dev/sdX3 /mnt
@@ -142,7 +142,7 @@ $ swapon /dev/sdX2
 ```
 ![image3](/posts/images/archlinux_120.png)
 
-Let's begin. To install, we need to use the `pacstrap` command. This is so we can get the linux base commponets. Use the command to do so.
+Let's begin. To install, we need to use the `pacstrap` command. This is so we can get the Linux base components. Use the command to do so.
 
 ```bash
 $ pacstrap /mnt base base-devel linux linux-firmware nano vim dhcpcd
@@ -258,7 +258,7 @@ $ systemctl enable dhcpcd
 ```
 
 ## Final
-Congrats! You have Arch Linux installed on your computer! To restart, exit out of the chroot enviroment, and then reboot
+Congrats! You have Arch Linux installed on your computer! To restart, exit out of the chroot environment, and then reboot
 
 ```bash
 $ exit
