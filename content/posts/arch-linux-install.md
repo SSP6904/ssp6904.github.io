@@ -185,7 +185,7 @@ For me, I use en_US, so I will select that. If you know which one, uncomment tha
 
 ![image](/posts/images/archlinux_122.png)
 
-After that, type these commands:
+After that, type in these commands. If your configuration is different, change the lines for the `LANG` variable based on your keyboard layout.
 
 ```bash
 $ locale-gen
@@ -195,7 +195,7 @@ $ export LANG=en_US.UTF-8
 
 ![image](/posts/images/archlinux_123.png)
 
-You should also set your timezone.
+You should also set your timezone. For me, I live in the Eastern Time Zone, so I will use a city based on that. You can specify on your timezone based on where you live. You can search one with the first command below.
 
 ```bash
 $ ls /usr/share/zoneinfo/
@@ -204,13 +204,13 @@ $ ln -s /usr/share/zoneinfo/Continent/Main_city /etc/localtime
 
 ![image](/posts/images/archlinux_124.png)
 
-Make sure that your system is up to date as well.
+Make sure that your system is up to date as well. This may be needed for some cases. You can run this command after installation if you want.
 
 ```bash
 $ pacman -Syu
 ```
 
-Now set a password for the root account, and create one for you.
+Now set a password for the root account. You should also create your own account and add a password to that as well.
 
 ```bash
 $ passwd
@@ -221,7 +221,7 @@ $ useradd -mg users -G wheel,storage,power -s /bin/bash your_new_user
 $ passwd your_new_user
 ```
 
-Lets set up sudo. To do this, type this command.
+Lets set up sudo. To do this, type this command. The picture will show you how to do this step.
 
 ```bash
 $ nano /etc/sudoers
@@ -251,7 +251,7 @@ $ grub-mkconfig -o /boot/grub/grub.cfg
 
 ![image](/posts/images/archlinux_126.png)
 
-Finally, enable the DHCP server service on boot.
+Finally, enable the DHCP server service on boot. You don't have to do this step if you are using a static IP.
 
 ```bash
 $ systemctl enable dhcpcd
