@@ -8,21 +8,3 @@ params:
         Title: Hi there! &#128075;
         Content: Welcome to my blog! This is built with Hugo, a static site generator. I also post here in my freetime!
 
-    socialIcons: # optional
-      - name: "TTNRT"
-        url: "https://www.ttnrtsite.me"
-      - name: "github"
-        url: "https://github.com/SSP6904"
-      - name: "youtube"
-        url: "https://www.youtube.com/@SSP6904"
-      - name: "steam"
-        url: "https://steamcommunity.com/profiles/76561199164190916"
-      - name: "Instagram"
-        url: "https://www.instagram.com/shau.n4028"
-      - name: "reddit"
-        url: "https://www.reddit.com/user/Agile_Professional83"
-      - name: "discord"
-        url: "https://discord.com/invite/XdgMxu8EZJ"
-      - name: "mastodon"
-        url: "https://social.ttnrtsite.me/@shoffer"
-
