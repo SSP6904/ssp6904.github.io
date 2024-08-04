@@ -1,0 +1,66 @@
+site_name: Shaun's Blog
+theme:
+  name: material
+  custom_dir: overrides
+  favicon: assets/logo.png
+  logo: assets/logo.png
+  palette:
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - toc.follow
+    - content.code.copy
+    - navigation.tabs
+    - navigation.footer
+
+markdown_extensions:
+    - toc:
+        permalink: '#'
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.superfences
+    - attr_list
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+
+plugins:
+  - blog:
+      blog_dir: .
+  - search
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/mastodon 
+      link: https://social.ttnrtsite.me/@shoffer
+      name: TTSocial
+    - icon: fontawesome/brands/github
+      link: https://github.com/SSP6904
+      name: GitHub
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/users/704346956155191366
+      name: Discord
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:shoffer@ttnrtsite.me
+      name: Email

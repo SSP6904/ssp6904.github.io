@@ -1,3 +1,1 @@
-Just a basic github.io site...
-
-Fork it if you want.
+# Blog site
