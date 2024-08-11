@@ -4,7 +4,7 @@ description: "An overview of the PC setup that I have"
 date: 2024-07-28T17:12:00Z
 ---
 
-Most of you may be wondering of my PC setup that I have. My setup mostly consists of about 3 computers, mostly used for gaming and video making.
+Most of you may be wondering of my PC setup. My setup mostly consists of about 3 computers. Let me show you!
 
 <!-- more -->
 
@@ -13,7 +13,7 @@ Most of you may be wondering of my PC setup that I have. My setup mostly consist
 ### Gigabyte PC
 ![the_gigabyte_machine](https://files.shaunhoffer.cc/images/blog/gigabytepc.jpg)
 
-This computer was built this year with parts that I got from cousin. The case is from my Dad with RGB light-up LEDS on the front panel. This one mostly used for gaming, but can be used for videos.
+This computer was built this year with parts that I got from cousin, while the case is from my Dad. The case has RGB light-up LEDS on the front panel. Mostly used for gaming, I still use it for video making.
 
 Details:
 
@@ -29,7 +29,7 @@ Details:
 ### Latitude PC
 ![the_latitude_machine](https://files.shaunhoffer.cc/images/blog/latitudepc.jpg)
 
-You may have seen this one in all my videos that I make. This laptop mostly serves as my main PC along side the Gigabyte PC. Although old and very low speced, it still functions pretty well.
+You may have seen this one in all my videos that I make. This laptop mostly serves as my main PC along side the Gigabyte PC. Although old and very low speced, it functions pretty well.
 
 Details:
 
@@ -44,7 +44,7 @@ Details:
 ### Lenovo PC
 ![the_lenovo_machine](https://files.shaunhoffer.cc/images/blog/lenovopc.jpg)
 
-This one mostly used as a secondary laptop, but I still use it as a daily driver, depsite it not having a internal display. Mostly used for videos and games, I also it for other stuff when I don't have my main laptop with me.
+This one mostly used as a secondary laptop, but I still use it as a daily driver, depsite it not having a internal display. Mostly used for videos and games, I use it for other things when I don't have my main laptop with me.
 
 Details:
 
