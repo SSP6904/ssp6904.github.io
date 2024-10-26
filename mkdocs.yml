@@ -15,7 +15,7 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: blue
+      primary: black
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -23,14 +23,13 @@ theme:
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: blue
+      primary: black
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
   features:
     - toc.follow
     - content.code.copy
-    - navigation.tabs
     - navigation.footer
 
 markdown_extensions:
@@ -51,16 +50,3 @@ plugins:
 
 extra:
   generator: false
-  social:
-    - icon: fontawesome/brands/mastodon 
-      link: https://social.ttnrtsite.me/@shoffer
-      name: TTSocial
-    - icon: fontawesome/brands/github
-      link: https://github.com/SSP6904
-      name: GitHub
-    - icon: fontawesome/brands/discord
-      link: https://discord.com/users/704346956155191366
-      name: Discord
-    - icon: fontawesome/solid/paper-plane
-      link: mailto:shoffer@ttnrtsite.me
-      name: Email
