@@ -41,6 +41,14 @@ jQuary has some functions that can load and fetch any file on your web server. S
         $('#myDIV').load('/myhtmlfile.html');
     });
     ```
+    
+    You can also use a standard function, rather than this one above! Below is an example on how you can do this!
+    
+    ```javascript
+    function templateLoad(file) {
+        $('#myDIV').load(file);
+    }
+    ```
 
 
 These are mostly part of the API that libary uses. Using these, we can fetch for an HTML file and then display it as a template. An example like this would be:
