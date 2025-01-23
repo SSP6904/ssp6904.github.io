@@ -1,0 +1,27 @@
+<title>{{ page.title }} | {{ site.title }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/halfmoon.min.css" rel="stylesheet">
+<style>
+.bodyflex {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+</style>
+<script>
+function updateScheme() {
+    const colorMode = window.matchMedia("(prefers-color-scheme: dark)").matches ?
+      "dark" :
+      "light";
+    var updateTheme = document.querySelector("html").setAttribute("data-bs-theme", colorMode);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme)
+}
+updateScheme()
+</script>
