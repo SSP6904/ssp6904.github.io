@@ -7,6 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     site: 'https://ssp6904.github.io',
     output: 'static',
+    compressHTML: false,
+    trailingSlash: 'never',
     server: {
         host: true,
         port: 8000
@@ -15,6 +17,9 @@ export default defineConfig({
         enabled: false
     },
     vite: {
-        plugins: [tailwindcss()]
+        plugins: [tailwindcss()],
+    },
+    build: {
+        format: 'file'
     }
 });

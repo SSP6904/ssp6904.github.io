@@ -1,0 +1,36 @@
+---
+interface Items {
+    name: string
+    link: string
+}
+
+const NavLinks: Array<Items> = [
+    {
+        name: 'Home',
+        link: '/'
+    },
+    {
+        name: 'Tools',
+        link: '/tools'
+    }
+]
+---
+<header>
+<div class="nav-contain">
+
+<div>
+<span>My Astro Website</span>
+</div>
+
+<div>
+<ul class="nav-links">
+{NavLinks.flatMap((item: any) => (
+<li class="nav-item">
+<a href={item.link} class="nav-link">{item.name}</a>
+</li>
+))}
+</ul>
+</div>
+
+</div>
+</header>

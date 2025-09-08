@@ -1,0 +1,77 @@
+---
+import Default from "../../layouts/Default.astro";
+---
+<Default title="Leaflet maps">
+<h1>Leaflet maps</h1>
+<div class="card">
+<div class="body p-0">
+<div id="map"></div>
+</div>
+</div>
+<br>
+<div class="card">
+<div class="body">
+<button type="button" class="btn primary" onclick="getLocationLeaflet()">Get location</button>
+</div>
+</div>
+<script is:inline>
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: ['© OpenStreetMap']
+})
+
+const topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}g', {
+    maxZoom: 19,
+    attribution: ['© Arcgis maps']
+})
+
+const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19,
+    attribution: ['© Arcgis maps']
+})
+
+const radar = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/ridge::USCOMP-N0Q-0/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: ['© Iowa State University']
+})
+
+const map = L.map('map', {
+    center: [37.8, -96],
+    zoom: 4,
+    layers: osm
+})
+
+const overlayMaps = {"Weather radar": radar}
+const baseMaps = {"OpenStreetMap": osm,"Arcgis Satellite": satellite,"Topo": topo}
+
+const layerControl = L.control.layers(baseMaps, overlayMaps, {collapsed: false})
+layerControl.addTo(map)
+const drawnItems = new L.FeatureGroup()
+map.addLayer(drawnItems)
+const drawControl = new L.Control.Draw({edit: {featureGroup: drawnItems}})
+map.addControl(drawControl)
+map.on(L.Draw.Event.CREATED, function (event) {
+    var layer = event.layer
+    drawnItems.addLayer(layer)
+})
+
+function onLocationFound(e) {
+    var location = e.latlng
+    var marker = L.marker(location)
+    marker.addTo(map)
+}
+
+function onLocationError(e) {
+    alert(e.message)
+}
+
+function getLocationLeaflet() {
+    map.on('locationfound', onLocationFound)
+    map.on('locationerror', onLocationError)
+    map.locate({
+        setView: true,
+        maxZoom: 10
+    })
+}
+</script>
+</Default>

@@ -1,0 +1,25 @@
+---
+import Default from "../../layouts/Default.astro";
+---
+<Default title="Markdown editor">
+<h1>Markdown editor</h1>
+<div class="grid-md">
+<div>
+<textarea id="editor"></textarea>
+</div>
+<div>
+<iframe id="output" srcdoc=""></iframe>
+</div>
+</div>
+<script is:inline>
+document.addEventListener("DOMContentLoaded", function(event) {
+    const editorFrame = document.querySelector('#editor')
+    editorFrame.addEventListener("keyup", function () {
+        const outputFrame = document.querySelector('#output')
+        const userInput = marked.parse(editorFrame.value)
+        outputFrame.srcdoc = userInput
+    })
+})
+</script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</Default>
