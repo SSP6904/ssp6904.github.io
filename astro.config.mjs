@@ -3,15 +3,18 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+const port = 8000
+const domain = import.meta.env.PROD ? 'https://ssp6904.github.io' : `http://localhost:${port}`
+
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://ssp6904.github.io',
+    site: domain,
     output: 'static',
     compressHTML: false,
     trailingSlash: 'never',
     server: {
         host: true,
-        port: 8000
+        port: port
     },
     devToolbar: {
         enabled: false
