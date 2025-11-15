@@ -8,18 +8,17 @@ import Default from "../../layouts/Default.astro";
 <textarea id="editor"></textarea>
 </div>
 <div>
-<iframe id="output" srcdoc=""></iframe>
+<iframe id="output"></iframe>
 </div>
 </div>
-<script is:inline>
+<script>
+import {marked} from 'marked'
 document.addEventListener("DOMContentLoaded", function(event) {
-    const editorFrame = document.querySelector('#editor')
-    editorFrame.addEventListener("keyup", function () {
-        const outputFrame = document.querySelector('#output')
-        const userInput = marked.parse(editorFrame.value)
-        outputFrame.srcdoc = userInput
+    const editorFrame = document.getElementById('editor') as HTMLTextAreaElement
+    const outputFrame = document.getElementById('output') as HTMLIFrameElement
+    editorFrame?.addEventListener('keyup', function() {
+        outputFrame.srcdoc = marked.parse(editorFrame.value) as string
     })
 })
 </script>
-<script is:inline src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </Default>

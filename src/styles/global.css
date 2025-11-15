@@ -194,3 +194,6 @@
         border: 1px solid var(--color-black);
     }
 }
+
+@import "leaflet/dist/leaflet.css";
+@import "leaflet-draw/dist/leaflet.draw.css";

@@ -5,7 +5,6 @@ interface Props {
 const {title} = Astro.props
 import '../styles/global.css'
 import Header from '../components/Header.astro'
-const pathName = Astro.url.pathname
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +13,6 @@ const pathName = Astro.url.pathname
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <meta name="generator" content={Astro.generator}>
-{(pathName === "/tools/leaflet-map.html" || pathName === "/tools/leaflet-map") && 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-}
 </head>
 <body>
 <Header />
