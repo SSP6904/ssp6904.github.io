@@ -16,6 +16,6 @@
     "leaflet": "^1.9.4",
     "leaflet-draw": "^1.0.4",
     "marked": "^17.0.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.18"
   }
 }
