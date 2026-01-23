@@ -1,22 +1,18 @@
 ---
 import Default from "../../layouts/Default.astro";
+import Card from "../../components/Card.astro";
 ---
 <Default title="Leaflet maps">
 <h1>Leaflet maps</h1>
-<div class="card">
-<div class="body p-0">
-<div id="map"></div>
-</div>
-</div>
+<Card title={null} link={null}><div id="map"></div></Card>
 <br>
-<div class="card">
-<div class="body">
-<button type="button" class="btn primary" onclick="getLocationLeaflet()">Get location</button>
-</div>
-</div>
+<Card title="Additional controls" link={null}>
+<button type="button" class="btn primary" id="location_get">Get location</button>
+</Card>
 <script>
 import * as L from 'leaflet'
 import 'leaflet-draw'
+const locationGetBtn = document.querySelector('#location_get') as HTMLButtonElement
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
@@ -50,23 +46,14 @@ map.addLayer(drawnItems)
 const drawControl = new L.Control.Draw({edit: {featureGroup: drawnItems}})
 map.addControl(drawControl)
 
-function onLocationFound(e: any) {
-    var location = e.latlng
-    var marker = L.marker(location)
-    marker.addTo(map)
-}
-
-function onLocationError(e: any) {
-    alert(e.message)
-}
-
-function getLocationLeaflet() {
-    map.on('locationfound', onLocationFound)
-    map.on('locationerror', onLocationError)
-    map.locate({
-        setView: true,
-        maxZoom: 10
+locationGetBtn.addEventListener('click', function(event: Event) {
+    map.on('locationfound', function(event) {
+        L.marker(event.latlng).addTo(map)
     })
-}
+    map.on('locationerror', function(event) {
+        alert(event.message)
+    })
+    map.locate({setView: true,maxZoom: 10})
+})
 </script>
 </Default>

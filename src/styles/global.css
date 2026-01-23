@@ -26,7 +26,6 @@
         transition: all .3s;
         &:hover {
             color: var(---primary-hover);
-            text-decoration: overline;
         }
     }
     h1 {
@@ -130,6 +129,14 @@
         background-color: var(--color-gray-500);
         color: var(--color-white);
     }
+    .card .body h1.title a {
+        color: unset;
+        text-decoration: none;
+        transition: unset;
+        &:hover {
+            color: unset;
+        }
+    }
     @media (max-width: 1000px) {
         .card {
             margin-bottom: 0.30em;
@@ -192,6 +199,53 @@
         height: 100%;
         border-radius: var(--radius-sm);
         border: 1px solid var(--color-black);
+    }
+}
+@layer components {
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.5em;
+    }
+    form label {
+        margin-bottom: 0.2em;
+    }
+    form label.flex {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    form input[type=checkbox] {
+        accent-color: var(--color-blue-400);
+        height: 20px;
+        width: 20px;
+        appearance: auto;
+        padding: 0.25em;
+        font-size: var(--text-lg);
+        color: var(--color-white);
+    }
+    form input[type=checkbox]+span {
+        display: inline-block;
+        cursor: default;
+        user-select: none;
+        margin-left: 0.10em;
+        font-size: var(--text-xl);
+    }
+    input[type=text], input[type=password], input[type=email], input[type=tel], select, textarea {
+        background-color: var(--color-gray-300);
+        padding: 0.25em;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-gray-600);
+        font-size: var(--text-sm);
+        color: var(--color-black);
+        &:focus {
+            outline: 2px solid var(--color-blue-600);
+        }
+    }
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+        max-height: 250px;
     }
 }
 

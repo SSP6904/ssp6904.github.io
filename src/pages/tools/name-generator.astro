@@ -1,0 +1,25 @@
+---
+import Default from "../../layouts/Default.astro";
+---
+<Default title="Random Name Generator">
+<h1>Random Name Generator</h1>
+<section>
+<input type="text" id="output_name" disabled="true" readonly="true" style="width: 100%; text-align: center; font-size: large;" autocomplete="off" />
+</section>
+<button type="button" class="btn primary" style="margin: 0; margin-top: 0.25em;" onclick="window.location.reload()">Regenerate a new name</button>
+<script>
+import {uniqueNamesGenerator, adjectives, names, languages, colors } from "unique-names-generator";
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    const output_name = document.querySelector('#output_name') as HTMLInputElement
+    const generated_name = uniqueNamesGenerator({
+        dictionaries: [colors, names],
+        separator: '-',
+        length: 2,
+        style: 'lowerCase'
+    })
+    output_name.value = ''
+    output_name.value = generated_name
+})
+</script>
+</Default>
