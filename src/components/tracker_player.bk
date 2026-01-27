@@ -1,0 +1,169 @@
+---
+import Default from "../../layouts/Default.astro";
+---
+<Default title="Chiptune.js Music Player">
+<h1>Chiptune.js Music Player</h1>
+<section>
+<h2>Settings</h2>
+<form id="setup_form">
+<div class="form_block">
+<label for="file">Upload your module file</label>
+<input type="file" id="file" name="file" autocomplete="off" required="true" />
+</div>
+<div class="form_block">
+<label for="mime_type">Select a mimetype</label>
+<p><strong>NOTE: Not all mime types are supported with your browser, so it's important to note that if your browser doesn't support any, you won't be able to convert your module files!</strong></p>
+<select id="mime_type" name="mime_type" required="true" autocomplete="off">
+<option value="" disabled="true" selected="true">Select a mimetype</option>
+</select>
+</div>
+<button type="submit" class="btn">Let's do this!</button>
+</form>
+</section>
+<section>
+<h2>Remaining recording duration</h2>
+<progress max="" value="" id="progress"></progress>
+<span id="time_left"></span>
+</section>
+<section>
+<h2>Player controls</h2>
+<ul>
+<li>Title: <span id="title"></span></li>
+<li>Created by: <span id="artist"></span></li>
+</ul>
+<div id="audio"></div>
+</section>
+
+<script>
+//@ts-check
+//import {ChiptuneJsPlayer} from '../../data/chiptune/chiptune3.min.js'
+const ChiptuneJsPlayer: any
+const setup_form = document.querySelector('#setup_form') as HTMLFormElement
+const progress_el = document.getElementById('progress') as HTMLProgressElement
+const time_left = document.getElementById('time_left') as HTMLSpanElement
+
+const check_formats = function() {
+	const containers = ['webm', 'ogg', 'mp4', 'x-matroska', '3gpp', '3gpp2', '3gp2', 'quicktime', 'mpeg', 'aac', 'flac', 'wav']
+	const codecs = ['vp9', 'vp8', 'avc1', 'av1', 'h265', 'h.265', 'h264', 'h.264', 'opus', 'pcm', 'aac', 'mpeg', 'mp4a']
+	const supportedAudios = containers.map(format => `audio/${format}`).filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+	const supportedAudioCodecs = supportedAudios.flatMap(audio => codecs.map(codec => `${audio};codecs=${codec}`)).filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+	const supportedVideos = containers.map(format => `video/${format}`).filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+	const supportedVideoCodecs = supportedVideos.flatMap(video => codecs.map(codec => `${video};codecs=${codec}`)).filter(mimeType => MediaRecorder.isTypeSupported(mimeType))
+	const supported_types = []
+	for (let i = 0; i < supportedAudioCodecs.length; i++) {
+		supported_types.push(`<option value="${supportedAudioCodecs[i]}">${supportedAudioCodecs[i]}</option>`)
+	}
+    setup_form.querySelector('#mime_type')?.insertAdjacentHTML('beforeend', supported_types.join(''))
+}
+const form_control = function(action: 'enable' | 'disable') {
+    const formElement = document.querySelector('#setup_form') as HTMLFormElement
+    const fieldElements = formElement.elements
+    for (let i = 0, len = fieldElements.length; i < len; ++i) {
+        if (action === 'enable') {
+            fieldElements[i].removeAttribute('disabled')
+        } else if(action === 'disable') {
+            fieldElements[i].setAttribute('disabled', 'true')
+        }
+    }
+}
+
+const convert_file = function(file: any, mime_type: string) {
+    progress_el.value = 0
+    progress_el.max = 0
+    const context = new AudioContext({
+        sampleRate: 48000*1
+    })
+    const player = new ChiptuneJsPlayer({
+        repeatCount: 0,
+        stereoSeparation: 100*1,
+		interpolationFilter: 0,
+		context: context,
+    })
+
+    player.onInitialized(function() {
+        player.decodeAll(file)
+        console.log(player.meta)
+    })
+    player.onError(function(error: string) {
+        console.log(error)
+        alert(error)
+    })
+    player.onFullAudioData(function(output: any) {
+		const aBuf = context.createBuffer(output.data.length, output.data[0].length, context.sampleRate)
+		aBuf.getChannelData(0).set(output.data[0])
+		aBuf.getChannelData(1).set(output.data[1])
+        console.log(aBuf)
+        const source = context.createBufferSource()
+        source.buffer = aBuf
+		source.playbackRate.value = 1
+		source.loop = false
+		source.onended = ()=>{
+			record_audio.requestData()
+			record_audio.stop()
+		}
+        const streamNode = context.createMediaStreamDestination()
+        const chunks: Array<Blob> = []
+
+		source.connect(streamNode)
+		source.connect(context.destination)
+
+        const record_audio = new MediaRecorder(streamNode.stream, {
+			audioBitsPerSecond: 128000,
+			mimeType: mime_type
+		})
+        record_audio.start()
+        //source.start(0)
+
+        const duration = aBuf.duration
+	    var minutes = Math.floor(duration / 60) as any
+	    var seconds = Math.floor(duration % 60) as any
+        
+	    if (seconds < 10) {
+            seconds = '0' + seconds
+        }
+	    
+	    progress_el.max = aBuf.length
+        time_left.textContent = minutes + ':' + seconds
+        setInterval(function() {
+            progress_el.value = context.currentTime + 1
+        }, context.currentTime + 2)
+        record_audio.ondataavailable = function(event: BlobEvent) {
+            chunks.push(event.data)
+            console.log('Chunk recorded')
+        }
+        record_audio.onstop = function(event: Event) {
+            const create_blob = URL.createObjectURL(new Blob(chunks, {type: mime_type}))
+            const new_audio = document.createElement('audio') as HTMLAudioElement
+            const meta_title = document.querySelector('#title') as HTMLSpanElement
+            const meta_artist = document.querySelector('#artist') as HTMLSpanElement
+            new_audio.controls = true
+            new_audio.src = create_blob
+
+            meta_title.innerHTML = player.meta.title || 'Unknown'
+            meta_artist.innerHTML = player.meta.artist  || 'Unknown'
+            document.querySelector('#audio')?.appendChild(new_audio)
+            form_control('enable')
+            URL.revokeObjectURL(create_blob)
+        }
+    })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    check_formats()
+})
+
+setup_form.addEventListener('submit', function(event: SubmitEvent) {
+    const form_data = new FormData(this)
+    const objects = Object.fromEntries(form_data.entries())
+    const file_object = objects.file as File
+    console.log(objects)
+    console.log("Please wait for the conversion process to complete. This might take some time, depending on the performance from your device!")
+    form_control('disable')
+    file_object.arrayBuffer().then(function(data) {
+        convert_file(data, objects.mime_type as string)
+        setup_form.reset()
+    })
+    event.preventDefault()
+})
+</script>
+</Default>

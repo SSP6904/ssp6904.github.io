@@ -20,7 +20,10 @@ export default defineConfig({
         enabled: false
     },
     vite: {
-        plugins: [tailwindcss()],
+        plugins: [
+            //@ts-ignore
+            tailwindcss()
+        ],
     },
     build: {
         format: 'file'
