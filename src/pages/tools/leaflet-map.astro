@@ -12,6 +12,8 @@ import Card from "../../components/Card.astro";
 <script>
 import * as L from 'leaflet'
 import 'leaflet-draw'
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 const locationGetBtn = document.querySelector('#location_get') as HTMLButtonElement
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -35,6 +37,14 @@ const map = L.map('map', {
     zoom: 4,
     layers: [osm]
 })
+let DefaultIcon = L.icon({
+    iconUrl: icon.src,
+    shadowUrl: iconShadow.src,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+})
+
+L.Marker.prototype.options.icon = DefaultIcon
 
 const layerControl = L.control.layers(
     {
@@ -52,7 +62,46 @@ const layerControl = L.control.layers(
 layerControl.addTo(map)
 const drawnItems = new L.FeatureGroup()
 map.addLayer(drawnItems)
-const drawControl = new L.Control.Draw({edit: {featureGroup: drawnItems}})
+const drawControl = new L.Control.Draw({
+    draw: {
+        polyline: {
+            metric: false,
+            feet: false,
+            shapeOptions: {
+                stroke: true,
+                fillColor: "red",
+                color: "red"
+            }
+        },
+        polygon: {
+            metric: false,
+            feet: false,
+            showArea: true,
+            shapeOptions: {
+                stroke: true,
+                color: "red"
+            }
+        },
+        circle: {
+            metric: false,
+            feet: false,
+            shapeOptions: {
+                stroke: true,
+                color: "red"
+            }
+        },
+        rectangle: {
+            metric: false,
+            shapeOptions: {
+                stroke: true,
+                color: "red"
+            }
+        }
+    },
+    edit: {
+        featureGroup: drawnItems
+    }
+})
 map.addControl(drawControl)
 
 map.on(L.Draw.Event.CREATED, function(event) {

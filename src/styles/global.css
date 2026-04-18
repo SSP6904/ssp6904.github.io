@@ -10,8 +10,8 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        background-color: var(--color-white);
-        color: var(--color-black);
+        background-color: var(--color-gray-700);
+        color: var(--color-white);
     }
     main {
         padding-left: 0.45em;
@@ -54,7 +54,8 @@
 
 @layer components {
     header {
-        background-color: var(--color-gray-300);
+        background-color: var(--color-blue-800);
+        color: var(--color-white);
         border-bottom: 1px solid var(--color-black);
         padding: 0.45em;
     }
@@ -81,7 +82,6 @@
         color: unset;
         &:hover {
             text-decoration: underline;
-            color: var(--color-blue-600);
         }
     }
 }
@@ -126,28 +126,27 @@
 @layer components {
     .card {
         display: flex;
-        width: 100%;
-    }
-    .card .body {
-        width: 100%;
-        padding: 0.35em;
-        border-radius: var(--radius-sm);
-        box-shadow: var(--shadow-sm);
-        background-color: var(--color-gray-500);
+        flex-direction: column;
+        border: 0;
         color: var(--color-white);
+        border-radius: var(--radius-md);
+        background-color: var(--color-gray-800);
+        box-shadow: var(--shadow-md);
     }
-    .card .body h1.title a {
+    .card > .body {
+        padding: 0.75em;
+        text-align: left;
+    }
+    a.card-link {
         color: unset;
-        text-decoration: none;
         transition: unset;
-        &:hover {
-            color: unset;
-        }
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+        height: 0%;
     }
-    @media (max-width: 1000px) {
-        .card {
-            margin-bottom: 0.30em;
-        }
+    a.card-link .card:hover {
+        outline: 2px solid var(--color-blue-700);
     }
 }
 
@@ -187,7 +186,7 @@
         min-height: 150px;
         max-height: 180px;
         width: 100%;
-        border: 1px solid var(--color-black);
+        border: 1px solid var(--color-white);
         background-color: var(--color-gray-300);
         border-radius: var(--radius-sm);
         box-shadow: var(--shadow-sm);
@@ -199,7 +198,8 @@
     iframe {
         overflow: auto;
         border-radius: var(--radius-sm);
-        border: 1px solid var(--color-black);
+        border: 1px solid var(--color-white);
+        background-color: var(--color-white);
         width: 100%;
         height: 100%;
     }
@@ -244,12 +244,12 @@
         font-size: var(--text-xl);
     }
     input[type=text], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=url], input[type=file], input[type=range], select, textarea {
-        background-color: var(--color-gray-300);
+        background-color: var(--color-gray-600);
         padding: 0.25em;
         border-radius: var(--radius-sm);
-        border: 1px solid var(--color-gray-600);
+        border: 1px solid var(--color-white);
         font-size: var(--text-sm);
-        color: var(--color-black);
+        color: var(--color-white);
         width: 100%;
         &:focus {
             outline: 2px solid var(--color-blue-600);

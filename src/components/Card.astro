@@ -1,17 +1,29 @@
 ---
 interface Props {
-    title: string | null
+    title: string | null;
     link: string | null
 }
-const {title, link} = Astro.props
+
+const { title, link } = Astro.props;
 ---
+{(link !== null) ?
+<a href={link} class="card-link">
 <div class="card">
 <div class="body">
-{title ?
-<h1 class="mb-0 title">{link ? <a href={link}>{title}</a> : title}</h1>
-<slot />
-:
-<slot />
+{(title !== null) &&
+<h1 class="mb-0">{title}</h1>
 }
+<slot />
 </div>
 </div>
+</a>
+:
+<div class="card">
+<div class="body">
+{(title !== null) &&
+<h1 class="mb-0">{title}</h1>
+}
+<slot />
+</div>
+</div>
+}
