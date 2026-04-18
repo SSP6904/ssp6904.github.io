@@ -10,6 +10,7 @@ import Card from "../../components/Card.astro";
 <button type="button" class="btn" id="location_get">Get location</button>
 </Card>
 <script>
+import { mac } from 'astro:schema';
 import * as L from 'leaflet'
 import 'leaflet-draw'
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -43,6 +44,7 @@ let DefaultIcon = L.icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41]
 })
+
 
 L.Marker.prototype.options.icon = DefaultIcon
 
@@ -96,6 +98,9 @@ const drawControl = new L.Control.Draw({
                 stroke: true,
                 color: "red"
             }
+        },
+        marker: {
+            icon: DefaultIcon
         }
     },
     edit: {
