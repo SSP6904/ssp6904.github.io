@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.1.9",
+    "astro": "^6.1.10",
     "leaflet": "^1.9.4",
     "leaflet-draw": "^1.0.4",
     "marked": "^18.0.2",
